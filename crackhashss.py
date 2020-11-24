@@ -46,7 +46,7 @@ def takeinput():
 	word=input()
 	return word
 
-def main():
+def main_imp():
 	banner()
 	word=takeinput()
 	word.strip()
@@ -61,6 +61,8 @@ def main():
 		print('We are limited to md5 hashes only.Please check in future update versions.')
 	# convert('data/tenmillion.txt')
 
+def main():
+	print('hello')
 
 if __name__ == "__main__":
     main()
