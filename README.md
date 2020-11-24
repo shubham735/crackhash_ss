@@ -3,7 +3,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> A basic command-line toolto crack hashes for exposed passwords over the internet based on few famous hashing algoritms like md5, sha1, sha256, sha384, sha512.
+> A basic command-line toolkit to crack hashes for exposed passwords over the internet based on few famous hashing algoritms like md5, sha1, sha256, sha384, sha512.
 
 ## Usage
 
