@@ -12,7 +12,7 @@ def banner():
 	`OoO'  o     `OoO'o `OoO' O   o O   o `OoO'o `OoO' O   o           `OoO' `OoO' 
 	                                                         ooooooooo            
 		''')
-	print('v1.0.0')
+	print('v0.1.1')
 
 def checkintenmillion(word):
 	with open('data/tenmillion.txt') as f:
@@ -24,7 +24,7 @@ def checkintenmillion(word):
 def readlineno(no):
 	f=open('data/tenmillion.txt')
 	lines=f.readlines()
-	print(lines[no+1])
+	print(lines[no-1])
 
 def getlineno(inp, filename):
     with open(filename,'r') as f:
@@ -37,7 +37,10 @@ def convert(filename):
 	file2write=open('data/md5.txt','w')
 	with open(filename) as f:
 		content = f.readlines()
-		for i in content:
+		lists=[]
+		for e in content:
+			lists.append(e.strip())
+		for i in lists:
 			file2write.write(hashlib.md5(i.encode('utf-8')).hexdigest()+'\n')
 	file2write.close()
 
@@ -46,7 +49,7 @@ def takeinput():
 	word=input()
 	return word
 
-def main_imp():
+def main():
 	banner()
 	word=takeinput()
 	word.strip()
@@ -56,13 +59,13 @@ def main_imp():
 		if no== -1:
 			print('Entered string is not a common password in top 10 million,  :(')
 		else:
+			print(no)
 			readlineno(no)
 	else:
 		print('We are limited to md5 hashes only.Please check in future update versions.')
-	# convert('data/tenmillion.txt')
 
-def main():
-	print('hello')
+# def main():
+# 	convert('data/tenmillion.txt')
 
 if __name__ == "__main__":
     main()
