@@ -1,4 +1,4 @@
-import hashlib
+import hashlib,string
 
 def banner():
 	print('''
@@ -12,7 +12,8 @@ def banner():
 	`OoO'  o     `OoO'o `OoO' O   o O   o `OoO'o `OoO' O   o           `OoO' `OoO' 
 	                                                         ooooooooo            
 		''')
-	print('v0.1.1')
+	print('v0.2.0')
+	
 
 def checkintenmillion(word):
 	with open('data/tenmillion.txt') as f:
@@ -34,14 +35,14 @@ def getlineno(inp, filename):
     return -1
 
 def convert(filename):
-	file2write=open('data/md5.txt','w')
+	file2write=open('data/sha256.txt','w')
 	with open(filename) as f:
 		content = f.readlines()
 		lists=[]
 		for e in content:
 			lists.append(e.strip())
 		for i in lists:
-			file2write.write(hashlib.md5(i.encode('utf-8')).hexdigest()+'\n')
+			file2write.write(hashlib.sha256(i.encode('utf-8')).hexdigest()+'\n')
 	file2write.close()
 
 def takeinput():
@@ -49,28 +50,56 @@ def takeinput():
 	word=input()
 	return word
 
+def check(word):
+	for letter in word:
+		if letter not in string.hexdigits:
+			return False
+	return True
+
 def main():
 	banner()
 	word=takeinput()
 	word.strip()
-	if len(word)==32:
-		print('It seems to be given string is in md5 format')
-		no=getlineno(word,'data/md5.txt')
-		if no== -1:
-			print('Entered string is not a common password in top 10 million,  :(')
+	no=0
+	if check(word):
+		if len(word)==32:
+			print('It seems to be given string is in md5 format')
+			no=getlineno(word,'data/md5.txt')
+		elif len(word)==40:
+			print('It seems to be given string is in sha1 format')
+			no=getlineno(word,'data/sha1.txt')
+		elif len(word)==64:
+			print('It seems to be given string is in sha3_256 format')
+			no=getlineno(word,'data/sha3_256.txt')
+		elif len(word)==96:
+			print('It seems to be given string is in sha3_384 format')
+			no=getlineno(word,'data/sha3_384.txt')
+		# elif len(word)==128:
+		# 	print('It seems to be given string is in sha3_512 format')
+		# 	no=getlineno(word,'data/sha3_512.txt')
+		elif len(word)==64:
+			print('It seems to be given string is in sha256 format')
+			no=getlineno(word,'data/sha256.txt')
+		elif len(word)==96:
+			print('It seems to be given string is in sha384 format')
+			no=getlineno(word,'data/sha384.txt')
+		# elif len(word)==128:
+		# 	print('It seems to be given string is in sha512 format')
+		# 	no=getlineno(word,'data/sha512.txt')
 		else:
-			print(no)
-			readlineno(no)
+			print('We are limited to md5 hashes only.Please check in future update versions.')
 	else:
-		print('We are limited to md5 hashes only.Please check in future update versions.')
+		print('It does\'nt seems to be valid hash')
+	
+	if no== -1:
+		print('Entered string is not a common password in top 10 million,  :(')
+	else:
+		print(readlineno(no))	
 
 # def main():
 # 	convert('data/tenmillion.txt')
+	# print(hashlib.algorithms_guaranteed)
+
 
 if __name__ == "__main__":
     main()
-# checkintenmillion('hello')
-# inp=int(input('Enter line no.'))
-# readlineno(inp)
-# inp=input('Enter word')
-# print(getlineno(inp,'tenmillion.txt'))
