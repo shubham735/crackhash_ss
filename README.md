@@ -1,6 +1,7 @@
 <h1 align="center">Welcome to crackhash_ss 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Maintance" src="https://img.shields.io/badge/Maintained%3F-no-red.svg" />
 </p>
 
 > A basic command-line toolkit to crack hashes for exposed passwords over the internet based on few famous hashing algoritms like md5, sha1, sha256, sha384.
